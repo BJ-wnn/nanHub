@@ -1,4 +1,4 @@
-package com.github.nan.http;
+package com.github.nan.http.dto;
 
 import java.util.HashMap;
 import java.util.Map;

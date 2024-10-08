@@ -1,4 +1,4 @@
-package com.github.nan.http;
+package com.github.nan.http.dto;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -50,5 +50,10 @@ public class RequestHeaders {
     // 获取某个header的值
     public String getHeader(String key) {
         return this.headers != null ? this.headers.get(key) : null;
+    }
+
+
+    public Map<String, String> getHeaders() {
+        return headers;
     }
 }
