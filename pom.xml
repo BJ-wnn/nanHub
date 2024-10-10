@@ -15,7 +15,7 @@
     </properties>
 
     <dependencies>
-        <!-- 其他依赖项 -->
+        <!-- http客户端 -->
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp</artifactId>
