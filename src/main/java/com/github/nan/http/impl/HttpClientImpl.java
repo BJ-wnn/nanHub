@@ -20,7 +20,7 @@ public class HttpClientImpl implements HttpClient {
     private Map<String, String> headers = new HashMap<>();
     private Map<String, String> queryParams = new HashMap<>();
     private String jsonBody;
-    private Map<String, String> formBody;
+    private Map<String, String> formBody = new HashMap<>();
     private OkHttpClient okHttpClient = new OkHttpClient();
 
     @Override
