@@ -4,6 +4,11 @@ import com.alibaba.druid.sql.SQLUtils;
 import com.alibaba.druid.sql.ast.SQLStatement;
 import com.alibaba.druid.sql.ast.statement.*;
 
+import net.sf.jsqlparser.JSQLParserException;
+import net.sf.jsqlparser.parser.CCJSqlParserUtil;
+import net.sf.jsqlparser.statement.Statement;
+import net.sf.jsqlparser.util.TablesNamesFinder;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +17,34 @@ import java.util.List;
  */
 public class SqlUtil {
 
+
+    /**
+     * 使用 JSqlParser 根据 SQL 和数据库类型解析 SQL 中的所有表名
+     * @param sql SQL 语句
+     * @return 表名列表
+     * @throws Exception 解析异常
+     */
+    public static List<String> extractTableNames(String sql) {
+        // 使用 JSqlParser 解析 SQL 语句
+        Statement statement = null;
+        try {
+            statement = CCJSqlParserUtil.parse(sql);
+        } catch (JSQLParserException e) {
+            throw new RuntimeException(e);
+        }
+
+        // 使用 TablesNamesFinder 提取表名
+        TablesNamesFinder tablesNamesFinder = new TablesNamesFinder();
+        return tablesNamesFinder.getTableList(statement);
+    }
+
+    /**
+     * 使用Druid解析SQL语句，获取表名
+     *
+     * @param sql
+     * @param dbType
+     * @return
+     */
     public static List<String> getTableNamesFromSQL(String sql, String dbType) {
         List<String> tableNames = new ArrayList<>();
 
